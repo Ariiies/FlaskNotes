@@ -9,7 +9,7 @@ def get_connection():
             host="localhost",
             port='3306',
             user="root",
-            password="mypassword",
+            password="my_password",
             database="reviews"
         )
     except Error as e:
