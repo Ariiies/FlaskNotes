@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang='es'>
+    <head>
+        <meta charset='utf-8'>
+        <title> {% block title %} Flask {% endblock %} | Made in Flask</title>
+        <link rel='stylesheet' href='{{url_for("static", filename="css/styles.css")}}'/>       
+        <script src='{{url_for("static", filename="css/bootstrap.bundle.min.js")}}' ></script>
+    </head> 
+        <header>
+            <div id="logotipo">
+                <!-- logo page  -->
+                <img src="{{url_for("static", filename="img/python-logo.png")}}"/>
+                
+                <h1>Proyect in Flask</h1>
+
+            </div>
+        </header>
+        <nav>
+            <ul>
+                {% if session.get("name") %}
+                    <li>
+                         <a href= ""> {{session.get("name")}} </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{url_for('profile')}}">Perfil</a></li>
+                        <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+                    </ul>
+                    </li>
+                {% endif%}
+                <li> <a href= "{{url_for('index')}}"> Main page </a></li>
+                <li> <a href= "{{url_for('buscar')}}"> Search </a> </li>
+                <li> <a href= "{{url_for('Notes',pagina=1)}}"> Notes </a> </li>
+            </ul>
+           
+        </nav> 
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno"></span>
+            <span class="esquina-derecha"></span>
+        </div> 
+
+        <div id="container">
+            <div class="box">
+                {% block content %}
+                <h2 class="title"> Tittle Test </h2>
+                <!-- contenido que viene de templates -->
+                    
+
+
+                {% endblock %}
+            </div>
+        </div>
+       
+        <footer>
+           | --Aries Allen PCAP-Python &copy; --ATW-- {{now.day}}/{{now.month}}/{{now.year}} --|
+        </footer>
+</body>
+
+</html>

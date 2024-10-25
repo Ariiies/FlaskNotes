@@ -1,0 +1,25 @@
+{% extends 'layout.html'%}
+
+{%block content%} 
+    <h1> Edit Note </h1>
+
+    {% if note %}
+        <h1> Edit: {{note.1}} {{note.2}} </h1>
+    {% else %}
+        <h1> Here edit notes </h1>
+    {% endif %}
+        <br>
+            <h3> id note: {{note.0}} </h3>
+        <br>
+    <form action="" method = "POST">
+        <label for = 'titulo'> Tittle <label>
+        <input type="text" name="titulo" {% if note%} value = {{note.2}} {% endif %} />
+        <label for = 'contenido'> Content <label>
+        <textarea name="contenido" id ="textos"> {% if note %} {{note.3}} {% endif %} </textarea>
+        <input type="submit" value="Save"/>
+    </form>
+    <br>
+        <h3> creation date: {{note.4}} </h3>
+    <br>
+   
+{%endblock%}

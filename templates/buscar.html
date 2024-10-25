@@ -1,0 +1,15 @@
+{% extends 'layout.html'%}
+    <link rel='stylesheet' type="text/css" href='{{url_for("static", filename="css/bootstrap.min.css")}}'/>
+    <script src='{{url_for("static", filename="css/bootstrap.bundle.min.js")}}' ></script>
+    {%block content%} 
+        <h1>  Search page: </h1> 
+        <br>
+        <form METHOD="GET" action='results/buscar/pagina'>
+            <div class = "form-group">
+            <input class = "searchinput" type="text" id = "buscar" name="buscar" placeholder="Type something"></input> 
+            <button type="submit" class = "buttonsearch"> Search </button>
+            </div>
+        </form>
+        <br>
+        
+    {%endblock%}

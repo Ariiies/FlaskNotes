@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+
+{%block content%} 
+{% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class = "messages">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif%}
+        {% endwith %}
+
+        {% if session.get("name") %}
+            <h1 class = "tcontent"> Welcome! {{session.get("name")}} </h1>
+        {% else %}
+            <h1 class = "tcontent"> Main Page </h1>
+        {% endif %}
+        <br>
+        <div class="content">
+            <p>This page was made using Flask. Flask is a **lightweight and flexible web framework** 
+                written in Python. It allows for quickly building web applications and APIs without enforcing 
+                a strict structure. Flask is ideal for small to medium-sized projects, where you want 
+                control over which tools to use, and it can be easily extended with plugins to add features like 
+                databases or authentication.</p>
+            <img src="{{url_for("static", filename="img/cflask.jpg")}}" alt="A flask Image">
+          </div>
+          
+{%endblock%}

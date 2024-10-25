@@ -1,0 +1,19 @@
+{% extends 'layout.html'%}
+
+{%block content%} 
+    <h1> User: {{session.get("username")}} </h1>
+
+    <div class = "data">
+      <h2> 
+          name: {{session.get("name")}} {{session.get("lastname")}}.</a>
+       </h2>
+          <h2>Email: {{session.get("correo") }}  </h2>
+          <h2> Num. of Identification: {{session.get("id")}} </h2>
+             <br>
+             <h2><a href="{{url_for('Crear_Nota')}}" class="btn"> Create a new note </a></h2>
+    </div> 
+          <div class = "clearfix"></div>
+      
+
+
+{%endblock%}

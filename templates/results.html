@@ -1,0 +1,60 @@
+{% extends 'layout.html'%}
+
+{%block content%} 
+    <h2> Results of the search: "{{busqueda}}" </h2>
+    {% if result == 0 %}
+         <p>It founds {{res}} results </p>
+    {% else%}
+         <p> It founds {{res}} results </p>
+         <p> pag. {{pagina}} </p>
+         {% for note in result[(pagina-1)*5:(pagina*5)]%}
+         <article class="article-item">
+            <div class = "data">
+               <h2> 
+                   <a href="{{url_for('note',note_id=note[0])}}"> 
+                       {{note.0}}. {{note.1}}.</a>
+               </h2>
+               <span class="date">
+               {{note.2[0:400]}}...  <br> 
+                
+               </span><br>
+               {{note.3}} 
+            </div> 
+            <div class = "clearfix"></div>
+            <p>
+                {% if session.get("name") %}
+                |<a href="{{url_for('edit_note',note_id=note.0)}}" class="btn"> Edit </a>
+                    <a href="{{url_for('delete_note',note_id=note.0)}}" > Delete </a>
+                {% else%}
+                |<a href="{{url_for('login',)}}" class="btn"> login for edit </a>
+                {% endif%}
+            </p>
+         </article>      
+        {% endfor %}
+
+        <p class="centrador"> 
+            {% if pagina != 1 %}
+            <a href="{{url_for('results',buscar=busqueda,pagina=pagina-1)}}" class="btn"> Prev </a>
+            {% endif %}
+           
+            {% if subcontador > 10 %}
+               {% if contador-(pagina-1) < 10 %}
+                   {% for n in range((subcontador-10), subcontador) %} 
+                       <a href="{{url_for('results',buscar=busqueda,pagina=n+1)}}" class="btn"> {{n+1}} </a>
+                   {% endfor %}
+               {% else %}
+                   {% for n in range((pagina-1), subcontador) %} 
+                       <a href="{{url_for('results',buscar=busqueda,pagina=n+1)}}" class="btn"> {{n+1}} </a>
+                   {% endfor %}
+               {% endif%}
+            {% else %}
+               {% for n in range((pagina-1), subcontador) %} 
+                   <a href="{{url_for('results',buscar=busqueda,pagina=n+1)}}" class="btn"> {{n+1}} </a>
+               {% endfor %}
+            {% endif %}
+           {% if pagina != contador %}
+            <a href="{{url_for('results',buscar=busqueda,pagina=pagina+1)}}" class="btn"> Next </a>
+            {% endif %}
+           </p>
+    {% endif%}
+{%endblock%}
